@@ -1,65 +1,123 @@
-import Image from "next/image";
+import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
+import { SectionTitle } from "@/components/ui/SectionTitle";
+import { Button } from "@/components/ui/Button";
+import { CountUp } from "@/components/ui/CountUp";
+import { PhoenixHero } from "@/components/sections/PhoenixHero";
+import { ServiceCard } from "@/components/sections/ServiceCard";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { CTABand } from "@/components/sections/CTABand";
+import { LogoMarquee } from "@/components/sections/LogoMarquee";
+import { Parallax } from "@/components/ui/Parallax";
+import { services } from "@/content/services";
+import { stats, values } from "@/content/site-content";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <PhoenixHero />
+
+      {/* Neden Simurg */}
+      <section id="neden-simurg" className="relative scroll-mt-24 overflow-hidden py-16 sm:py-24">
+        <Parallax speed={0.4} className="pointer-events-none absolute -left-24 top-10">
+          <div className="h-72 w-72 rounded-full bg-gold-400/8 blur-[90px]" />
+        </Parallax>
+        <Container>
+          <div className="grid items-center gap-14 lg:grid-cols-2">
+            <div>
+              <SectionTitle
+                align="left"
+                eyebrow="Neden Simurg"
+                title={
+                  <>
+                    Rakamların ötesinde,{" "}
+                    <span className="text-gold-gradient">stratejik ortaklık</span>
+                  </>
+                }
+                subtitle="Simurg, tıpkı küllerinden yeniden doğan efsanevi Anka kuşu gibi, işletmenizin her dönemde güçlenerek yükselmesi için yanınızda. Mali, finansal, hukuki ve insan kaynakları süreçlerinizi tek çatı altında, bütüncül bir bakışla yönetiriz."
+              />
+              <div className="mt-8">
+                <Button href="/hakkimizda" variant="outline">
+                  Hikâyemizi Okuyun
+                </Button>
+              </div>
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-2">
+              {values.map((v, i) => (
+                <Reveal
+                  key={v.title}
+                  delay={i * 0.08}
+                  className="rounded-2xl border border-gold-400/15 bg-ink-700/50 p-6"
+                >
+                  <div className="mb-3 h-9 w-9 rounded-lg bg-gradient-to-br from-gold-400/25 to-transparent p-px">
+                    <div className="flex h-full w-full items-center justify-center rounded-[7px] bg-ink-800 font-serif text-lg text-gold-300">
+                      {i + 1}
+                    </div>
+                  </div>
+                  <h3 className="font-serif text-lg font-semibold text-foreground">
+                    {v.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/60">
+                    {v.body}
+                  </p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* İstatistik şeridi */}
+      <section className="border-y border-gold-400/15 bg-ink-900/60 py-14">
+        <Container>
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            {stats.map((s, i) => (
+              <Reveal key={s.label} delay={i * 0.08} className="text-center">
+                <CountUp
+                  value={s.value}
+                  className="block font-serif text-4xl font-semibold text-gold-gradient sm:text-5xl"
+                />
+                <div className="mt-2 text-xs uppercase tracking-[0.15em] text-foreground/55">
+                  {s.label}
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Hizmetler */}
+      <section className="relative overflow-hidden py-16 sm:py-24">
+        <Parallax speed={0.45} className="pointer-events-none absolute -right-24 top-20">
+          <div className="h-80 w-80 rounded-full bg-gold-500/8 blur-[100px]" />
+        </Parallax>
+        <Container>
+          <SectionTitle
+            eyebrow="Hizmetlerimiz"
+            title="Tek çatı altında dört uzmanlık"
+            subtitle="İşletmenizin ihtiyaç duyduğu finansal ve idari çözümleri, birbirini tamamlayan bütüncül bir yaklaşımla sunuyoruz."
+          />
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {services.map((s) => (
+              <ServiceCard key={s.slug} service={s} />
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Müşteri logoları — sonsuz akan şerit */}
+      <section className="py-12">
+        <Container>
+          <p className="mb-8 text-center text-xs uppercase tracking-[0.25em] text-foreground/40">
+            Bize güvenen işletmeler
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        </Container>
+        <LogoMarquee />
+      </section>
+
+      <Testimonials />
+      <CTABand />
+    </>
   );
 }

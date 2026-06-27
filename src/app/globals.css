@@ -1,26 +1,157 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #f5f1e6;
+
+  /* Marka altın paleti */
+  --gold-50: #fdf8e7;
+  --gold-100: #f8ecc2;
+  --gold-200: #f1d98b;
+  --gold-300: #e9c45a;
+  --gold-400: #d4af37;
+  --gold-500: #c19a2e;
+  --gold-600: #9c7a23;
+
+  --ink-900: #050505;
+  --ink-800: #0a0a0a;
+  --ink-700: #121212;
+  --ink-600: #1a1a1a;
+  --ink-500: #232323;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-gold-50: var(--gold-50);
+  --color-gold-100: var(--gold-100);
+  --color-gold-200: var(--gold-200);
+  --color-gold-300: var(--gold-300);
+  --color-gold-400: var(--gold-400);
+  --color-gold-500: var(--gold-500);
+  --color-gold-600: var(--gold-600);
+
+  --color-ink-900: var(--ink-900);
+  --color-ink-800: var(--ink-800);
+  --color-ink-700: var(--ink-700);
+  --color-ink-600: var(--ink-600);
+  --color-ink-500: var(--ink-500);
+
+  --font-sans: var(--font-sans-custom);
+  --font-serif: var(--font-serif-custom);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: color-mix(in srgb, var(--gold-400) 14%, transparent);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background: var(--background);
+  background: var(--ink-800);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans-custom), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Altın metin gradyanı */
+.text-gold-gradient {
+  background: linear-gradient(
+    120deg,
+    #9c7a23 0%,
+    #d4af37 30%,
+    #f5d676 45%,
+    #fff6d0 50%,
+    #f5d676 55%,
+    #d4af37 70%,
+    #9c7a23 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+/* İnce altın çerçeve */
+.gold-hairline {
+  border: 1px solid color-mix(in srgb, var(--gold-400) 30%, transparent);
+}
+
+/* Arka plan ışıltısı */
+.gold-radial {
+  background: radial-gradient(
+    circle at 50% 0%,
+    color-mix(in srgb, var(--gold-400) 12%, transparent) 0%,
+    transparent 60%
+  );
+}
+
+::selection {
+  background: var(--gold-400);
+  color: #0a0a0a;
+}
+
+/* Özel imleç aktifken yerel imleci gizle */
+body.cursor-none,
+body.cursor-none * {
+  cursor: none !important;
+}
+
+/* İnce kaydırma çubuğu */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink-900);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--gold-600), var(--gold-400));
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.08); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes ember-rise {
+  0% { transform: translate(0, 0) scale(0.4); opacity: 0; }
+  12% { opacity: 1; }
+  85% { opacity: 0.6; }
+  100% { transform: translate(var(--drift, 0), -75vh) scale(1); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }

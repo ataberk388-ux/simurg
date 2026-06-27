@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Simurg Finansal Danışmanlık — Kurumsal Web Sitesi
 
-## Getting Started
+Mali müşavirlik, finans, hukuk ve insan kaynakları danışmanlığı için premium,
+siyah-altın temalı, scroll animasyonlu (Anka kuşu) kurumsal web sitesi.
 
-First, run the development server:
+## Teknolojiler
+
+- **Next.js 16** (App Router) + **TypeScript**
+- **Tailwind CSS v4** — siyah/altın tasarım sistemi
+- **GSAP + ScrollTrigger** — Anka kuşu scroll animasyonu
+- **Framer Motion** — bölüm geçişleri / mikro etkileşimler
+- **Lenis** — smooth scroll
+- **React Hook Form + Zod** — form doğrulama
+- **Resend** — iletişim formu e-posta gönderimi
+
+## Geliştirme
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production derleme
+npm start        # production sunucu
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## İletişim formu e-postası
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Form gönderimleri `/api/contact` üzerinden **Resend** ile e-postaya iletilir.
+Anahtar tanımlı değilse geliştirme ortamında gönderim konsola loglanır
+(arayüz akışı çalışır), production'da ise 503 döner.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Kurmak için `.env.local.example` dosyasını `.env.local` olarak kopyalayın ve
+doldurun:
 
-## Learn More
+```
+RESEND_API_KEY=...            # https://resend.com
+CONTACT_FROM="Simurg Web <onboarding@resend.dev>"   # domain doğrulanınca güncelleyin
+CONTACT_TO="beyzanur.gul@simurgdanismanlik.com"
+```
 
-To learn more about Next.js, take a look at the following resources:
+## İçerik düzenleme
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Hizmetler:** `src/content/services.ts`
+- **Referans / yorum / basın / istatistik:** `src/content/site-content.ts`
+- **İletişim & marka bilgileri:** `src/lib/site.ts`
+- **Logo (kartvizit):** `public/brand/kartvizit.jpeg`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Yapılacaklar (gerçek içerik geldikçe)
 
-## Deploy on Vercel
+- Referans logolarını görselle değiştirin (`site-content.ts → clients`)
+- Gerçek müşteri yorumlarını ekleyin (`testimonials`)
+- Basın haberlerini ve linklerini ekleyin (`press`)
+- Yasal metinleri (KVKK, gizlilik, çerez, koşullar) bir hukuk danışmanına onaylatın
+- Sosyal medya URL'lerini doğrulayın (`site.ts → social`)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[Vercel](https://vercel.com)'e bağlayıp ortam değişkenlerini ekleyin; otomatik
+HTTPS ve CDN ile yayına alınır.
