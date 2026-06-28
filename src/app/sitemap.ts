@@ -1,22 +1,28 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { services } from "@/content/services";
+import { blogPosts } from "@/content/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
+
   const routes = [
     "",
     "/hakkimizda",
+    "/simurgun-hikayesi",
+    "/misyon-vizyon",
+    "/grup-yapimiz",
     "/hizmetler",
+    "/danismanlar",
     "/referanslar",
-    "/basinda-biz",
+    "/blog",
+    "/kariyer",
     "/iletisim",
     "/gizlilik-politikasi",
     "/kvkk-aydinlatma",
     "/cerez-politikasi",
     "/kullanim-kosullari",
   ];
-
-  const now = new Date();
 
   const staticPages: MetadataRoute.Sitemap = routes.map((path) => ({
     url: `${site.url}${path}`,
@@ -32,5 +38,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...servicePages];
+  const blogPages: MetadataRoute.Sitemap = blogPosts.map((p) => ({
+    url: `${site.url}/blog/${p.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...servicePages, ...blogPages];
 }

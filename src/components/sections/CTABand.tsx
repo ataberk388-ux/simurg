@@ -1,10 +1,14 @@
+import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { Parallax } from "@/components/ui/Parallax";
 import { site } from "@/lib/site";
 
-export function CTABand() {
+export async function CTABand() {
+  const t = await getTranslations("cta");
+  const tc = await getTranslations("common");
+
   return (
     <section className="py-16 sm:py-24">
       <Container>
@@ -18,16 +22,16 @@ export function CTABand() {
           </Parallax>
           <div className="relative">
             <h2 className="mx-auto max-w-2xl font-serif text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
-              İşletmenizi <span className="text-gold-gradient">küllerinden doğuralım</span>
+              {t("title1")}{" "}
+              <span className="text-gold-gradient">{t("titleHi")}</span>
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-foreground/65">
-              İlk görüşme ücretsiz. İhtiyacınızı dinleyelim, size özel bir yol
-              haritası çıkaralım.
+              {t("subtitle")}
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button href="/iletisim">Ücretsiz Görüşme Alın</Button>
-              <Button href={`tel:${site.phoneRaw}`} variant="outline">
-                {site.phone}
+              <Button href="/iletisim">{t("appointment")}</Button>
+              <Button href={`https://wa.me/${site.whatsapp}`} variant="outline">
+                {tc("whatsapp")}
               </Button>
             </div>
           </div>

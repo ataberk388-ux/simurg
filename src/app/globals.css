@@ -1,23 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #f5f1e6;
+  --background: #0b1f3a;
+  --foreground: #eef2f8;
 
-  /* Marka altın paleti */
-  --gold-50: #fdf8e7;
-  --gold-100: #f8ecc2;
-  --gold-200: #f1d98b;
-  --gold-300: #e9c45a;
-  --gold-400: #d4af37;
-  --gold-500: #c19a2e;
-  --gold-600: #9c7a23;
+  /* Marka altın paleti (brief: #C9A00A ana, #D8B24C parlak vurgu) */
+  --gold-50: #faf3dd;
+  --gold-100: #f1dfa8;
+  --gold-200: #e6cb78;
+  --gold-300: #d8b24c;
+  --gold-400: #c9a00a;
+  --gold-500: #ab8709;
+  --gold-600: #8a6d08;
 
-  --ink-900: #050505;
-  --ink-800: #0a0a0a;
-  --ink-700: #121212;
-  --ink-600: #1a1a1a;
-  --ink-500: #232323;
+  /* "ink" tokenları artık lacivert tonları (isimler korundu) */
+  --ink-900: #050b16; /* en koyu — footer/derin zemin */
+  --ink-800: #0b1f3a; /* ana lacivert — gövde zemini */
+  --ink-700: #122a4a; /* kart zemini */
+  --ink-600: #1f3864; /* kurumsal lacivert — hover */
+  --ink-500: #2c4a78; /* açık lacivert — kenarlık */
 }
 
 @theme inline {
@@ -77,13 +78,13 @@ html.lenis body {
 .text-gold-gradient {
   background: linear-gradient(
     120deg,
-    #9c7a23 0%,
-    #d4af37 30%,
-    #f5d676 45%,
-    #fff6d0 50%,
-    #f5d676 55%,
-    #d4af37 70%,
-    #9c7a23 100%
+    #8a6d08 0%,
+    #c9a00a 30%,
+    #d8b24c 45%,
+    #f3e7bd 50%,
+    #d8b24c 55%,
+    #c9a00a 70%,
+    #8a6d08 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;

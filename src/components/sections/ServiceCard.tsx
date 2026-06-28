@@ -1,12 +1,14 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import type { Service } from "@/content/services";
 import { ServiceIcon } from "@/components/ServiceIcon";
 
 export function ServiceCard({ service }: { service: Service }) {
   const ref = useRef<HTMLAnchorElement>(null);
+  const t = useTranslations("common");
 
   const onMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const el = ref.current;
@@ -57,7 +59,7 @@ export function ServiceCard({ service }: { service: Service }) {
         {service.short}
       </p>
       <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-gold-300 transition-all group-hover:gap-3">
-        Detayları görün
+        {t("details")}
         <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
           <path d="M5 12h14M13 6l6 6-6 6" />
         </svg>

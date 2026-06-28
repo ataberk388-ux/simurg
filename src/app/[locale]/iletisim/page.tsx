@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/sections/PageHero";
@@ -15,40 +16,32 @@ const mapQuery = encodeURIComponent(
   "Rasimpaşa Mahallesi Ayrılıkçeşme Sokak No:142A Kadıköy İstanbul",
 );
 
-const contactItems = [
-  {
-    label: "Telefon",
-    value: site.phone,
-    href: `tel:${site.phoneRaw}`,
-    d: "M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.7 21 3 13.3 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2Z",
-  },
-  {
-    label: "E-posta",
-    value: site.email,
-    href: `mailto:${site.email}`,
-    d: "M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1.4 2L12 12l7.6-5",
-  },
-  {
-    label: "WhatsApp",
-    value: "Hemen yazın",
-    href: `https://wa.me/${site.whatsapp}`,
-    d: "M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3Zm0 2a7 7 0 1 1-3.6 13l-.4-.2-2.3.6.6-2.2-.2-.4A7 7 0 0 1 12 5Z",
-  },
-  {
-    label: "Adres",
-    value: site.address.full,
-    href: `https://www.google.com/maps?q=${mapQuery}`,
-    d: "M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z",
-  },
-];
+const icons = {
+  phone: "M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.7 21 3 13.3 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2Z",
+  email: "M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1.4 2L12 12l7.6-5",
+  whatsapp: "M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3Zm0 2a7 7 0 1 1-3.6 13l-.4-.2-2.3.6.6-2.2-.2-.4A7 7 0 0 1 12 5Z",
+  address: "M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z",
+};
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const tp = await getTranslations("pages");
+  const tn = await getTranslations("nav");
+  const tc2 = await getTranslations("common2");
+  const tf = await getTranslations("footer");
+
+  const contactItems = [
+    { label: tc2("phone"), value: site.phone, href: `tel:${site.phoneRaw}`, d: icons.phone },
+    { label: tc2("email"), value: site.email, href: `mailto:${site.email}`, d: icons.email },
+    { label: "WhatsApp", value: tc2("whatsappWrite"), href: `https://wa.me/${site.whatsapp}`, d: icons.whatsapp },
+    { label: tc2("address"), value: site.address.full, href: `https://www.google.com/maps?q=${mapQuery}`, d: icons.address },
+  ];
+
   return (
     <>
       <PageHero
-        eyebrow="İletişim"
-        title="Hadi tanışalım"
-        description="İlk görüşme ücretsiz. İhtiyacınızı dinleyelim, işletmenize özel bir yol haritası çıkaralım."
+        eyebrow={tn("contact")}
+        title={tp("contactTitle")}
+        description={tp("contactDesc")}
       />
 
       <section className="pb-12">
@@ -86,13 +79,13 @@ export default function ContactPage() {
 
               <Reveal delay={0.3} className="rounded-2xl border border-gold-400/15 bg-ink-700/40 p-5">
                 <span className="block text-xs uppercase tracking-[0.15em] text-gold-400">
-                  Çalışma Saatleri
+                  {tc2("workingHours")}
                 </span>
                 <span className="mt-1 block text-sm text-foreground/75">
-                  {site.hours}
+                  {tf("hoursValue")}
                 </span>
                 <span className="mt-1 block text-xs text-foreground/45">
-                  Hafta sonu randevu ile.
+                  {tp("hoursWeekend")}
                 </span>
               </Reveal>
             </div>
@@ -100,10 +93,10 @@ export default function ContactPage() {
             {/* Sağ: form */}
             <Reveal delay={0.1} className="rounded-3xl border border-gold-400/20 bg-ink-800/60 p-6 sm:p-8">
               <h2 className="font-serif text-2xl font-semibold text-foreground">
-                Bize yazın
+                {tp("contactFormTitle")}
               </h2>
               <p className="mt-2 text-sm text-foreground/55">
-                Formu doldurun, en kısa sürede size dönelim.
+                {tp("contactFormSub")}
               </p>
               <div className="mt-7">
                 <ContactForm />

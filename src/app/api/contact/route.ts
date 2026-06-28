@@ -56,7 +56,7 @@ export async function POST(req: Request) {
   const data = parsed.data;
 
   // Honeypot doluysa sessizce başarı dön (bot)
-  if (data.company && data.company.length > 0) {
+  if (data.website && data.website.length > 0) {
     return NextResponse.json({ ok: true });
   }
 
@@ -89,6 +89,7 @@ export async function POST(req: Request) {
       subject: `Yeni İletişim Formu: ${data.subject}`,
       text: [
         `Ad Soyad: ${data.name}`,
+        `Firma: ${data.companyName || "-"}`,
         `Telefon: ${data.phone}`,
         `E-posta: ${data.email}`,
         `Konu: ${data.subject}`,
@@ -100,6 +101,7 @@ export async function POST(req: Request) {
         <div style="font-family:Arial,sans-serif;color:#1a1a1a">
           <h2 style="color:#9c7a23">Yeni İletişim Formu Mesajı</h2>
           <p><strong>Ad Soyad:</strong> ${escapeHtml(data.name)}</p>
+          <p><strong>Firma:</strong> ${escapeHtml(data.companyName || "-")}</p>
           <p><strong>Telefon:</strong> ${escapeHtml(data.phone)}</p>
           <p><strong>E-posta:</strong> ${escapeHtml(data.email)}</p>
           <p><strong>Konu:</strong> ${escapeHtml(data.subject)}</p>

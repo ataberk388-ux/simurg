@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Playfair_Display, Inter } from "next/font/google";
-import "./globals.css";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
+import "../globals.css";
 import { site } from "@/lib/site";
+import { routing } from "@/i18n/routing";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SmoothScroll } from "@/components/SmoothScroll";
-import { CookieBanner } from "@/components/CookieBanner";
+import { CookieConsent } from "@/components/CookieConsent";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { Preloader } from "@/components/Preloader";
@@ -24,19 +28,24 @@ const sans = Inter({
   display: "swap",
 });
 
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.legalName} | Mali Müşavirlik & Finansal Danışmanlık`,
+    default: `${site.legalName} | Finansal ve Stratejik Danışmanlık`,
     template: `%s | ${site.shortName}`,
   },
   description: site.description,
   keywords: [
+    "finansal danışmanlık",
     "mali müşavirlik",
-    "muhasebe",
-    "finans danışmanlığı",
-    "insan kaynakları",
-    "Kadıköy mali müşavir",
+    "şirket kuruluşu",
+    "yatırım teşvik",
+    "uluslararası iş geliştirme",
+    "stratejik danışmanlık",
     "Simurg Danışmanlık",
   ],
   authors: [{ name: site.legalName }],
@@ -45,7 +54,7 @@ export const metadata: Metadata = {
     locale: "tr_TR",
     url: site.url,
     siteName: site.name,
-    title: `${site.legalName} | Mali Müşavirlik & Finansal Danışmanlık`,
+    title: `${site.legalName} | Finansal ve Stratejik Danışmanlık`,
     description: site.description,
   },
   twitter: {
@@ -56,9 +65,17 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
+export default async function LocaleLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) notFound();
+  setRequestLocale(locale);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "AccountingService",
@@ -80,7 +97,7 @@ export default function RootLayout({
 
   return (
     <html
-      lang="tr"
+      lang={locale}
       data-scroll-behavior="smooth"
       className={`${serif.variable} ${sans.variable} h-full antialiased`}
     >
@@ -89,17 +106,19 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Preloader />
-        <CustomCursor />
-        <ScrollProgress />
-        <GoldThread />
-        <SmoothScroll>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </SmoothScroll>
-        <FloatingWhatsApp />
-        <CookieBanner />
+        <NextIntlClientProvider>
+          <Preloader />
+          <CustomCursor />
+          <ScrollProgress />
+          <GoldThread />
+          <SmoothScroll>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </SmoothScroll>
+          <FloatingWhatsApp />
+          <CookieConsent />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

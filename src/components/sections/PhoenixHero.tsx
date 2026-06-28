@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -42,6 +42,8 @@ export function PhoenixHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef(0);
   const [mode, setMode] = useState<"loading" | "3d" | "fallback">("loading");
+  const t = useTranslations("hero");
+  const tc = useTranslations("common");
 
   useEffect(() => {
     const reduced = window.matchMedia(
@@ -116,7 +118,7 @@ export function PhoenixHero() {
       />
 
       {/* Alt karartma (scrim) — sayfa zeminiyle (ink-800) kusursuz birleşir */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-ink-800 from-15% via-ink-800/85 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[48%] bg-gradient-to-t from-ink-800 from-10% via-ink-800/80 to-transparent" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink-800/70 to-transparent" />
 
       {/* Üst: şirket adı */}
@@ -132,7 +134,7 @@ export function PhoenixHero() {
       </div>
 
       {/* Alt: başlık + CTA */}
-      <Container className="relative z-10 pb-16 sm:pb-20">
+      <Container className="relative z-10 pb-8 sm:pb-12">
         <div className="mx-auto max-w-3xl text-center">
           <motion.h1
             variants={{
@@ -141,18 +143,22 @@ export function PhoenixHero() {
             }}
             initial="hidden"
             animate="show"
-            className="font-serif text-4xl font-semibold leading-[1.06] text-foreground sm:text-6xl md:text-7xl"
+            className="font-serif text-3xl font-semibold leading-[1.22] text-foreground sm:text-5xl md:text-6xl"
           >
             <span className="block">
-              {"Küllerinden doğan".split(" ").map((w, i) => (
+              {t("line1").split(" ").map((w, i) => (
                 <motion.span key={i} variants={wordVariant} className="inline-block">
                   {w}&nbsp;
                 </motion.span>
               ))}
             </span>
-            <span className="block text-gold-gradient">
-              {"finansal güç".split(" ").map((w, i) => (
-                <motion.span key={i} variants={wordVariant} className="inline-block">
+            <span className="block">
+              {t("line2").split(" ").map((w, i) => (
+                <motion.span
+                  key={i}
+                  variants={wordVariant}
+                  className="inline-block text-gold-gradient pb-[0.18em] -mb-[0.18em] pt-[0.06em] -mt-[0.06em]"
+                >
                   {w}&nbsp;
                 </motion.span>
               ))}
@@ -162,38 +168,46 @@ export function PhoenixHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 1.2, ease: [0.19, 1, 0.22, 1] }}
-            className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-foreground/70 sm:text-lg"
+            className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-foreground/70 sm:text-lg"
           >
-            Mali müşavirlik, finans, hukuk ve insan kaynakları danışmanlığında
-            işletmenizi geleceğe taşıyan kurumsal çözüm ortağınız.
+            {t("subtitle")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 1.45, ease: [0.19, 1, 0.22, 1] }}
-            className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
+            className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap"
           >
             <Magnetic>
-              <Button href="/iletisim">Ücretsiz Görüşme Alın</Button>
+              <Button href="/hizmetler">{tc("exploreServices")}</Button>
             </Magnetic>
             <Magnetic>
-              <Button href="/hizmetler" variant="outline">
-                Hizmetlerimizi Keşfedin
+              <Button href="/iletisim" variant="outline">
+                {tc("freeConsult")}
+              </Button>
+            </Magnetic>
+            <Magnetic>
+              <Button
+                href={`https://wa.me/${site.whatsapp}`}
+                variant="ghost"
+                className="border border-gold-400/20"
+              >
+                {tc("whatsapp")}
               </Button>
             </Magnetic>
           </motion.div>
         </div>
       </Container>
 
-      <Link
-        href="#neden-simurg"
-        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-gold-300/60 transition-colors hover:text-gold-300"
+      <a
+        href="#icerik"
+        className="absolute bottom-2 left-1/2 z-10 -translate-x-1/2 text-gold-300/60 transition-colors hover:text-gold-300"
         aria-label="Aşağı kaydır"
       >
         <span className="flex h-9 w-5 justify-center rounded-full border border-gold-400/40 pt-1.5">
           <span className="h-2 w-1 animate-bounce rounded-full bg-gold-400" />
         </span>
-      </Link>
+      </a>
     </section>
   );
 }
