@@ -201,7 +201,7 @@ export function PhoenixHero() {
 
       <a
         href="#icerik"
-        className="absolute bottom-2 left-1/2 z-10 -translate-x-1/2 text-gold-300/60 transition-colors hover:text-gold-300"
+        className="absolute bottom-2 left-1/2 z-10 hidden -translate-x-1/2 text-gold-300/60 transition-colors hover:text-gold-300 sm:block"
         aria-label="Aşağı kaydır"
       >
         <span className="flex h-9 w-5 justify-center rounded-full border border-gold-400/40 pt-1.5">
