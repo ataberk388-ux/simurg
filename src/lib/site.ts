@@ -8,7 +8,7 @@ export const site = {
   description:
     "Simurg Finansal Danışmanlık A.Ş.; mali, finansal, hukuki ve stratejik danışmanlık çözümleriyle şirketinizin büyüme, dönüşüm ve kurumsallaşma yolculuğunda güvenilir çözüm ortağınızdır.",
   url: "https://www.simurgdanismanlik.com",
-  email: "beyzanur.gul@simurgdanismanlik.com",
+  email: "info@simurgdanismanlik.com",
   phone: "+90 530 282 96 92",
   phoneRaw: "+905302829692",
   whatsapp: "905302829692",
