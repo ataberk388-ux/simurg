@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageAlternates } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/sections/PageHero";
@@ -6,11 +7,15 @@ import { CTABand } from "@/components/sections/CTABand";
 import { getLocale, getTranslations } from "next-intl/server";
 import { getGroupCompanies, getGroupIntro } from "@/content/group";
 
-export const metadata: Metadata = {
-  title: "Grup Yapımız",
-  description:
-    "Simurg Finansal Danışmanlık, DG Vizyon Mali Müşavirlik ve DEWOX Kimya'dan oluşan bütünleşik ekosistem.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return {
+    title: "Grup Yapımız",
+    description:
+      "Simurg Finansal Danışmanlık, DG Vizyon Mali Müşavirlik ve DEWOX Kimya'dan oluşan bütünleşik ekosistem.",
+    alternates: pageAlternates("/grup-yapimiz", locale),
+  };
+}
 
 export default async function GroupPage() {
   const locale = await getLocale();

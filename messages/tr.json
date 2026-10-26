@@ -7,11 +7,11 @@
     "missionVision": "Misyon & Vizyon",
     "group": "Grup Yapımız",
     "services": "Hizmetlerimiz",
-    "consultants": "Danışmanlarımız",
-    "references": "Referanslarımız",
-    "blog": "Blog",
+    "consultants": "Ekibimiz",
+    "blog": "Simurg Insights",
     "contact": "İletişim",
-    "career": "Kariyer"
+    "career": "Kariyer",
+    "projects": "Proje Deneyimimiz"
   },
   "common": {
     "whatsapp": "WhatsApp'tan Yazın",
@@ -22,7 +22,6 @@
     "viewAll": "Tümünü Görüntüle",
     "getInTouch": "İletişime Geçin",
     "requestAppointment": "Randevu Talep Et",
-    "comingSoon": "Çok yakında",
     "allServices": "Tüm Hizmetler"
   },
   "hero": {
@@ -50,15 +49,16 @@
     "whySubtitle": "Çünkü sürdürülebilir başarı, doğru analiz ve güçlü yol arkadaşlığıyla başlar.",
     "processEyebrow": "Süreç Nasıl İşler?",
     "processTitle": "Ölçülebilir, şeffaf ve yönetilebilir bir sistem",
-    "consultantsEyebrow": "Danışmanlarımız",
-    "consultantsTitle": "Deneyimli ekibimizle tanışın",
-    "consultantsCta": "Danışmanlarımızı Tanıyın",
+    "consultantsEyebrow": "Ekibimiz",
+    "consultantsTitle": "Ekibimizle tanışın",
+    "consultantsCta": "Ekibimizi Tanıyın",
     "refEyebrow": "Proje Deneyimimiz",
-    "refTitle": "Gizlilik ilkesiyle yürüttüğümüz projelerden deneyimler",
-    "refSubtitle": "Çalıştığımız kurumların gizliliğine önem veriyoruz; deneyimlerimizi sektör ve hizmet kapsamı üzerinden paylaşıyoruz.",
-    "blogLabel": "Blog / Makaleler",
-    "blogTitle": "Güncel teşvikler, vergi gündemi ve finansal rehberler",
-    "blogText": "Şirketinizi ilgilendiren güncel bilgileri ve uzman içerikleri blog bölümümüzde paylaşıyoruz."
+    "refTitle": "Farklı sektörler, bütünleşik çözümler",
+    "refSubtitle": "Gizlilik ve ticari güven ilkelerimiz doğrultusunda proje deneyimlerimizi kurum ve taraf bilgilerini açıklamadan genel kapsamlarıyla paylaşıyoruz.",
+    "refCta": "Proje Deneyimimizi İnceleyin",
+    "insightsEyebrow": "Simurg Insights",
+    "insightsTitle": "Finansal istihbarat ve stratejik perspektif",
+    "insightsText": "Doğrulanmış gelişmelerden şirketler ve karar vericiler için özgün stratejik çıkarımlar üretiyoruz."
   },
   "cta": {
     "title1": "Şirketiniz için doğru yol haritasını",
@@ -66,26 +66,20 @@
     "subtitle": "İlk görüşmede ihtiyaçlarınızı analiz edelim, size özel finansal ve stratejik çözüm alanlarını birlikte belirleyelim.",
     "appointment": "Randevu Talep Et"
   },
-  "blog": {
-    "eyebrow": "Blog / Makaleler",
-    "title1": "Güncel bilgiler ve",
-    "titleHi": "uzman içerikler",
-    "desc": "Teşvikler, vergi gündemi, şirket kuruluşu, yatırım ve ihracat alanlarında işinize değer katacak içerikler.",
-    "allPosts": "Tüm Yazılar",
-    "otherPosts": "Diğer yazılar",
-    "ctaNote": "Bu konuda şirketinize özel danışmanlık için",
-    "ctaLink": "bizimle iletişime geçebilirsiniz"
-  },
   "service": {
     "forWhom": "Bu hizmet kimler için uygundur?",
-    "scope": "Hizmet kapsamında neler yapılır?",
+    "scope": "Hizmet kapsamındaki başlıklar",
     "howWeHelp": "Simurg bu süreçte nasıl destek olur?",
     "steps": "Süreç adımları",
     "faq": "Sık sorulan sorular",
-    "ctaTitle": "Bu hizmet için ön görüşme talep edin",
+    "ctaTitle": "Ön görüşme talep edin",
     "ctaText": "Projeniz için uygun çözümü birlikte belirleyelim.",
     "ctaButton": "Teklif / Ön Görüşme",
-    "others": "Diğer hizmetler"
+    "others": "Diğer hizmetler",
+    "approach": "Çözüm Yaklaşımımız",
+    "deliverables": "Çalışma kapsamı ve çıktıları",
+    "relatedInsight": "İlgili Simurg Insights",
+    "scopeLimitNote": "Yetki veya ruhsat gerektiren hukuki ve mali hizmetler, ilgili meslek mensupları tarafından sunulur. Simurg'un bu süreçlerdeki rolü koordinasyon ve proje yönetimidir."
   },
   "footer": {
     "tagline": "Mali, finansal, hukuki ve stratejik danışmanlığı tek çatı altında buluşturan bütünleşik bir çözüm ortağı.",
@@ -114,7 +108,6 @@
     "mission": "Misyon",
     "vision": "Vizyon",
     "philosophy": "Marka Felsefesi",
-    "referencesNote": "Gerçek referans logoları ve detaylı başarı hikâyeleri, iş ortaklarımızın onayı doğrultusunda ilerleyen süreçte eklenecektir.",
     "aboutTitle1": "Şirketlerin",
     "aboutTitleHi": "stratejik yol arkadaşı",
     "aboutDesc": "Simurg; mali, finansal, hukuki ve stratejik danışmanlığı tek çatı altında buluşturan bütünleşik bir çözüm ortağıdır.",
@@ -125,11 +118,9 @@
     "linkStoryDesc": "Otuz kuşun yolculuğu ve felsefemiz",
     "linkMvDesc": "Değerlerimiz ve hedefimiz",
     "linkGroupDesc": "Bütünleşik ekosistemimiz",
-    "linkConsultantsDesc": "Deneyimli ekibimiz",
-    "consultantsTitle1": "Danışmanlarımızla",
+    "linkConsultantsDesc": "Bütünleşik uzman ekibimiz",
+    "consultantsTitle1": "Ekibimizle",
     "consultantsTitleHi": "tanışın",
-    "consultantsDesc": "Stratejik yönetim, finansal danışmanlık ve uluslararası iş geliştirme alanlarında deneyimli kadromuz.",
-    "consultantsPhotoNote": "Profil fotoğrafları yayın öncesi eklenecektir.",
     "groupNote": "Mali operasyon, finansal danışmanlık, üretim, ticaret ve ihracat deneyimini aynı çatı altında birleştiren bu yapı; Simurg'u teorik bir danışmanlıktan çok, sahada uygulayan bütünleşik bir çözüm ortağı yapar.",
     "careerTitle1": "Simurg'da",
     "careerTitleHi": "kariyer",
@@ -223,5 +214,32 @@
     "s6": "Hukuki koordinasyon",
     "s7": "Diğer"
   },
-  "lang": { "tr": "TR", "en": "EN" }
+  "lang": {
+    "tr": "TR",
+    "en": "EN"
+  },
+  "projects": {
+    "areas": "Çalışma alanları",
+    "cta": "Ön Görüşme Talep Edin"
+  },
+  "insights": {
+    "brand": "Simurg Insights",
+    "tagline": "Finansal İstihbarat ve Stratejik Perspektif",
+    "title1": "Finansal istihbarat ve",
+    "titleHi": "stratejik perspektif",
+    "desc": "Doğrulanmış gelişmelerden şirketlere ve karar vericilere yönelik özgün stratejik çıkarımlar üreten kurumsal analiz yayınımız.",
+    "principle": "Simurg Insights, haberleri yeniden yayımlayan bir haber alanı değildir. Editoryal ilkemiz gündemi aktarmak değil, iş dünyası için anlamlandırmaktır.",
+    "metaTitle": "Simurg Insights",
+    "metaDesc": "Piyasa analizleri, kurumsal finans, uluslararası ticaret ve mevzuat başlıklarında Simurg'un özgün stratejik değerlendirmeleri.",
+    "latest": "Son analiz",
+    "summary": "Yönetici özeti",
+    "assessment": "Simurg'un Stratejik Değerlendirmesi",
+    "sources": "Birincil kaynaklar",
+    "updated": "Güncelleme",
+    "allPosts": "Tüm Analizler",
+    "otherPosts": "İlgili makaleler",
+    "ctaFallbackTitle": "Bu konuyu şirketiniz için değerlendirelim",
+    "ctaFallbackText": "İhtiyacınızı dinleyelim, uygun çalışma alanlarını birlikte belirleyelim.",
+    "ctaButton": "Ön Görüşme Talep Edin"
+  }
 }

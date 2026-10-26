@@ -50,27 +50,6 @@ export const processIntro: L<string> = {
   en: "At Simurg, advisory is not limited to giving advice. From needs analysis to implementation follow-up, every step proceeds within a measurable, transparent and manageable system.",
 };
 
-export type ReferenceProject = { sector: string; scope: string };
-
-const referenceProjectsData: L<ReferenceProject[]> = {
-  tr: [
-    { sector: "Üretim Sektörü", scope: "Finansal yapılandırma ve nakit akışı planlaması" },
-    { sector: "Dış Ticaret Sektörü", scope: "İhracat süreç yönetimi ve uluslararası pazar araştırması" },
-    { sector: "Kimya Sektörü", scope: "Kurumsal yapı, marka konumlandırma ve iş geliştirme desteği" },
-    { sector: "Yatırım Projeleri", scope: "Fizibilite, teşvik analizi ve yatırım planlama süreci" },
-    { sector: "KOBİ Danışmanlığı", scope: "Muhasebe, SGK, vergi ve finansal raporlama süreçlerinin yapılandırılması" },
-    { sector: "Yabancı Yatırımcı Süreçleri", scope: "Türkiye'de şirket kuruluşu ve operasyonel danışmanlık" },
-  ],
-  en: [
-    { sector: "Manufacturing Sector", scope: "Financial restructuring and cash flow planning" },
-    { sector: "Foreign Trade Sector", scope: "Export process management and international market research" },
-    { sector: "Chemical Sector", scope: "Corporate structuring, brand positioning and business development support" },
-    { sector: "Investment Projects", scope: "Feasibility, incentive analysis and investment planning" },
-    { sector: "SME Consulting", scope: "Structuring accounting, social security, tax and financial reporting processes" },
-    { sector: "Foreign Investor Processes", scope: "Company formation in Türkiye and operational consulting" },
-  ],
-};
-
 const statsData: L<{ value: string; label: string }[]> = {
   tr: [
     { value: "7", label: "Ana hizmet alanı" },
@@ -88,5 +67,4 @@ const statsData: L<{ value: string; label: string }[]> = {
 
 export const getWhyCards = (l: string) => pick(whyCardsData, l);
 export const getProcessSteps = (l: string) => pick(processStepsData, l);
-export const getReferenceProjects = (l: string) => pick(referenceProjectsData, l);
 export const getStats = (l: string) => pick(statsData, l);

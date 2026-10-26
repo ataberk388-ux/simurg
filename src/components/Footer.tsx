@@ -19,7 +19,7 @@ const pageLinks = [
   { key: "group", href: "/grup-yapimiz" },
   { key: "services", href: "/hizmetler" },
   { key: "consultants", href: "/danismanlar" },
-  { key: "references", href: "/referanslar" },
+  { key: "projects", href: "/proje-deneyimimiz" },
   { key: "blog", href: "/blog" },
   { key: "career", href: "/kariyer" },
   { key: "contact", href: "/iletisim" },

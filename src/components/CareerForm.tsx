@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { SuccessBurst } from "@/components/SuccessBurst";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/cn";
+import { track } from "@/lib/analytics";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -52,6 +53,7 @@ export function CareerForm() {
         throw new Error(b.error || t("genericError"));
       }
       setStatus("success");
+      track("career_form_success");
       form.reset();
     } catch (err) {
       setStatus("error");

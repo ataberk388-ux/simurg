@@ -17,7 +17,7 @@ const navKey: Record<string, string> = {
   "/grup-yapimiz": "group",
   "/hizmetler": "services",
   "/danismanlar": "consultants",
-  "/referanslar": "references",
+  "/proje-deneyimimiz": "projects",
   "/blog": "blog",
   "/iletisim": "contact",
 };

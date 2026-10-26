@@ -51,9 +51,9 @@ export const nav: NavItem[] = [
     ],
   },
   { label: "Hizmetlerimiz", href: "/hizmetler" },
-  { label: "Danışmanlarımız", href: "/danismanlar" },
-  { label: "Referanslarımız", href: "/referanslar" },
-  { label: "Blog", href: "/blog" },
+  { label: "Ekibimiz", href: "/danismanlar" },
+  { label: "Proje Deneyimimiz", href: "/proje-deneyimimiz" },
+  { label: "Simurg Insights", href: "/blog" },
   { label: "İletişim", href: "/iletisim" },
 ];
 

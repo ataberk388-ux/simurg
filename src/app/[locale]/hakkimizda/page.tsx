@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageAlternates } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
@@ -11,11 +12,15 @@ import { pick } from "@/content/_pick";
 import { companyIntro, getWhyCards } from "@/content/home";
 import { getPhilosophy } from "@/content/about";
 
-export const metadata: Metadata = {
-  title: "Hakkımızda",
-  description:
-    "Simurg Finansal Danışmanlık A.Ş.; mali, finansal, hukuki ve stratejik danışmanlığı tek çatı altında buluşturan bütünleşik bir çözüm ortağıdır.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return {
+    title: "Hakkımızda",
+    description:
+      "Simurg Finansal Danışmanlık A.Ş.; mali, finansal, hukuki ve stratejik danışmanlığı tek çatı altında buluşturan bütünleşik bir çözüm ortağıdır.",
+    alternates: pageAlternates("/hakkimizda", locale),
+  };
+}
 
 export default async function AboutPage() {
   const locale = await getLocale();

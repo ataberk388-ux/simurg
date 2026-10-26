@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageAlternates } from "@/lib/seo";
 import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
@@ -11,11 +12,15 @@ import {
   getValleys,
 } from "@/content/about";
 
-export const metadata: Metadata = {
-  title: "Simurg'un Hikayesi",
-  description:
-    "Otuz kuşun yolculuğu ve Simurg'un çalışma felsefesi: gerçek güç, doğru stratejiyle keşfedilen içsel potansiyelde saklıdır.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return {
+    title: "Simurg'un Hikayesi",
+    description:
+      "Otuz kuşun yolculuğu ve Simurg'un çalışma felsefesi: gerçek güç, doğru stratejiyle keşfedilen içsel potansiyelde saklıdır.",
+    alternates: pageAlternates("/simurgun-hikayesi", locale),
+  };
+}
 
 export default async function StoryPage() {
   const locale = await getLocale();

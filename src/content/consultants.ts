@@ -3,8 +3,16 @@ import { L, pick } from "./_pick";
 export type Consultant = {
   name: string;
   title: string;
+  /** Bağlı olduğu yapı (ör. DG Vizyon). Boşsa Simurg kadrosu. */
+  org?: string;
   bio: string;
   expertise: string[];
+};
+
+/** Ekibimiz sayfası giriş metni. */
+const teamIntroData: L<string> = {
+  tr: "Simurg Finansal Danışmanlık ve iş birliği içerisinde çalıştığı uzman ekipler; finansal danışmanlık, muhasebe, kurumsal yönetim, iş geliştirme ve hukuki süreçlerde farklı disiplinleri bir araya getirerek şirketlerin ihtiyaçlarına bütünleşik çözümler sunar.",
+  en: "Simurg Financial Consulting and the expert teams it works with bring together different disciplines across financial advisory, accounting, corporate governance, business development and legal processes to deliver integrated solutions for companies' needs.",
 };
 
 const consultantsData: L<Consultant[]> = {
@@ -23,9 +31,29 @@ const consultantsData: L<Consultant[]> = {
     },
     {
       name: "Beyzanur Gül",
-      title: "Finansal Danışman",
-      bio: "Beyzanur Gül, Simurg Finansal Danışmanlık A.Ş.'de finansal danışmanlık, müşteri ilişkileri, proje koordinasyonu ve uluslararası iş görüşmeleri süreçlerinde aktif rol alan bir endüstri mühendisidir. Şirketlerin ihtiyaç analizlerinin yapılması, danışmanlık süreçlerinin doğru yönlendirilmesi ve müşteriyle sürdürülebilir iletişim kurulması alanlarında görev alır.",
-      expertise: ["Finansal danışmanlık", "Müşteri ilişkileri", "Proje koordinasyonu", "Uluslararası toplantı süreçleri", "Kurumsal iletişim"],
+      title: "İş Geliştirme ve Proje Yöneticisi",
+      bio: "Beyzanur Gül, Simurg Finansal Danışmanlık bünyesinde iş geliştirme, proje yönetimi, uluslararası ticari ilişkiler ve stratejik iş birliklerinin koordinasyonunda görev almaktadır. Endüstri mühendisliği altyapısını finansal ve ticari analiz süreçleriyle birleştirerek yeni iş fırsatlarının geliştirilmesi, ulusal ve uluslararası paydaşlarla ilişkilerin yürütülmesi ve projelerin planlama aşamasından uygulama sürecine kadar takip edilmesinde aktif rol üstlenmektedir.",
+      expertise: ["İş geliştirme", "Proje yönetimi", "Uluslararası ticari ilişkiler", "Stratejik iş birlikleri", "Ticari analiz"],
+    },
+    {
+      name: "Rojda Eren",
+      title: "Muhasebe Müdürü",
+      org: "DG Vizyon",
+      bio: "Rojda Eren, DG Vizyon bünyesinde muhasebe, finansal yönetim ve mali danışmanlık süreçlerinin koordinasyonunu üstlenmektedir. İşletmelerin mali yükümlülüklerinin yönetilmesi, vergisel süreçlerin planlanması ve finansal operasyonların düzenli yürütülmesinde aktif rol almaktadır. Bilgi birikimi ve yönetim yaklaşımıyla şirketlerin mali yapılarının güçlendirilmesine ve sürdürülebilir büyüme hedeflerinin desteklenmesine katkı sağlamaktadır.",
+      expertise: ["Muhasebe yönetimi", "Finansal yönetim", "Mali danışmanlık", "Vergisel süreç planlaması", "Finansal operasyon"],
+    },
+    {
+      name: "Diclecan Daşdan",
+      title: "Muhasebe Uzmanı",
+      org: "DG Vizyon",
+      bio: "Diclecan Daşdan, DG Vizyon bünyesinde muhasebe, mali danışmanlık ve kurumsal işlem süreçlerinde aktif rol almaktadır. İşletmelerin mali ve vergisel yükümlülüklerinin yürütülmesinin yanı sıra şirket kuruluşu, ticaret sicili işlemleri ve resmî kurumlarla yürütülen süreçlerin koordinasyonuna katkı sağlamaktadır. Profesyonel ve çözüm odaklı yaklaşımıyla işletmelerin mali ve kurumsal faaliyetlerinin güvenilir, düzenli ve etkin biçimde ilerlemesini desteklemektedir.",
+      expertise: ["Muhasebe", "Mali danışmanlık", "Şirket kuruluşu işlemleri", "Ticaret sicili süreçleri", "Resmî kurum koordinasyonu"],
+    },
+    {
+      name: "Zekeriya Dedebaş",
+      title: "Hukuk Danışmanı | Avukat",
+      bio: "Zekeriya Dedebaş, Simurg Finansal Danışmanlık'ın hukuki süreçlerinde destek sağlayan avukat olarak şirketlerin ticari ve kurumsal faaliyetlerine ilişkin hukuki değerlendirme ve koordinasyon çalışmalarında görev almaktadır. Ticari sözleşmelerin incelenmesi ve hazırlanması, şirketler hukuku kapsamındaki işlemler, kurumsal yükümlülüklerin değerlendirilmesi ve ticari ilişkilerden doğabilecek hukuki risklerin yönetilmesi konularında destek sunmaktadır. Hukuki süreçlerin mali ve ticari hedeflerle uyumlu yürütülmesine katkı sağlamaktadır.",
+      expertise: ["Ticari sözleşmeler", "Şirketler hukuku", "Kurumsal uyum", "Hukuki risk yönetimi", "Süreç koordinasyonu"],
     },
   ],
   en: [
@@ -43,14 +71,35 @@ const consultantsData: L<Consultant[]> = {
     },
     {
       name: "Beyzanur Gül",
-      title: "Financial Consultant",
-      bio: "Beyzanur Gül is an industrial engineer who takes an active role in financial advisory, client relations, project coordination and international business meetings at Simurg Financial Consulting Inc. She works on conducting companies' needs analyses, properly directing advisory processes and building sustainable communication with clients.",
-      expertise: ["Financial advisory", "Client relations", "Project coordination", "International meeting processes", "Corporate communication"],
+      title: "Business Development and Project Manager",
+      bio: "Beyzanur Gül works on business development, project management, international commercial relations and strategic partnerships at Simurg Financial Consulting. Drawing on her industrial engineering background, she contributes to commercial analysis, partner coordination and the follow-through of projects from planning to implementation.",
+      expertise: ["Business development", "Project management", "International commercial relations", "Strategic partnerships", "Commercial analysis"],
+    },
+    {
+      name: "Rojda Eren",
+      title: "Accounting Manager",
+      org: "DG Vizyon",
+      bio: "Rojda Eren coordinates accounting, financial management and financial advisory processes at DG Vizyon. She contributes to the management of companies' financial obligations, tax processes and orderly financial operations, supporting stronger financial structures and sustainable growth.",
+      expertise: ["Accounting management", "Financial management", "Financial advisory", "Tax process planning", "Financial operations"],
+    },
+    {
+      name: "Diclecan Daşdan",
+      title: "Accounting Specialist",
+      org: "DG Vizyon",
+      bio: "Diclecan Daşdan supports accounting, financial advisory and corporate administrative processes at DG Vizyon. Her work includes financial and tax obligations, company incorporations, trade registry procedures and coordination with public authorities.",
+      expertise: ["Accounting", "Financial advisory", "Company incorporation", "Trade registry procedures", "Public authority coordination"],
+    },
+    {
+      name: "Zekeriya Dedebaş",
+      title: "Legal Advisor | Attorney-at-Law",
+      bio: "Zekeriya Dedebaş supports Simurg Financial Consulting in legal matters relating to commercial and corporate activities, including commercial contracts, company law matters, compliance considerations and the assessment of legal risks associated with business relationships.",
+      expertise: ["Commercial contracts", "Company law", "Corporate compliance", "Legal risk management", "Process coordination"],
     },
   ],
 };
 
 export const getConsultants = (l: string) => pick(consultantsData, l);
+export const getTeamIntro = (l: string) => pick(teamIntroData, l);
 
 export const initials = (name: string) =>
   name

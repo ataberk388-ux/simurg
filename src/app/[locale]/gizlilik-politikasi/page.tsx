@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
+import { getLocale } from "next-intl/server";
+import { pageAlternates } from "@/lib/seo";
 import { LegalLayout } from "@/components/sections/LegalLayout";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Gizlilik Politikası",
-  description: "Simurg Finansal Danışmanlık gizlilik politikası.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return {
+    title: "Gizlilik Politikası",
+    description: "Simurg Finansal Danışmanlık gizlilik politikası.",
+    alternates: pageAlternates("/gizlilik-politikasi", locale),
+  };
+}
 
 export default function PrivacyPage() {
   return (

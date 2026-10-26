@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
+import { getLocale } from "next-intl/server";
+import { pageAlternates } from "@/lib/seo";
 import { LegalLayout } from "@/components/sections/LegalLayout";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "KVKK Aydınlatma Metni",
-  description:
-    "6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında aydınlatma metni.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return {
+    title: "KVKK Aydınlatma Metni",
+    description:
+      "6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında aydınlatma metni.",
+    alternates: pageAlternates("/kvkk-aydinlatma", locale),
+  };
+}
 
 export default function KvkkPage() {
   return (

@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
+import { pageAlternates } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionTitle } from "@/components/ui/SectionTitle";
@@ -11,15 +13,26 @@ import { CTABand } from "@/components/sections/CTABand";
 import { getServices } from "@/content/services";
 import { getGroupCompanies, getGroupIntro } from "@/content/group";
 import { getConsultants, initials } from "@/content/consultants";
+import { getProjectExperience } from "@/content/projects";
+import {
+  getInsights,
+  getCategoryLabel,
+  formatInsightDate,
+} from "@/content/insights";
+import { Link } from "@/i18n/navigation";
 import { pick } from "@/content/_pick";
 import {
   companyIntro,
   processIntro,
   getWhyCards,
   getProcessSteps,
-  getReferenceProjects,
   getStats,
 } from "@/content/home";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return { alternates: pageAlternates("/", locale) };
+}
 
 export default async function HomePage() {
   const locale = await getLocale();
@@ -28,7 +41,8 @@ export default async function HomePage() {
 
   const whyCards = getWhyCards(locale);
   const processSteps = getProcessSteps(locale);
-  const referenceProjects = getReferenceProjects(locale);
+  const projects = getProjectExperience(locale);
+  const insights = getInsights(locale).slice(0, 3);
   const stats = getStats(locale);
   const groupCompanies = getGroupCompanies(locale);
   const consultants = getConsultants(locale);
@@ -248,7 +262,7 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      {/* Referanslar — anonim proje deneyimleri */}
+      {/* Proje Deneyimimiz — gizlilik ilkesiyle, genel kapsam düzeyinde */}
       <section className="py-16 sm:py-24">
         <Container>
           <SectionTitle
@@ -257,42 +271,72 @@ export default async function HomePage() {
             subtitle={t("refSubtitle")}
           />
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {referenceProjects.map((r, i) => (
+            {projects.map((p, i) => (
               <Reveal
-                key={r.sector}
+                key={p.no}
                 delay={i * 0.06}
                 className="rounded-2xl border border-gold-400/15 bg-ink-700/40 p-7"
               >
-                <h3 className="font-serif text-lg font-semibold text-gold-200">
-                  {r.sector}
+                <span className="font-serif text-2xl font-semibold text-gold-gradient">
+                  {p.no}
+                </span>
+                <h3 className="mt-3 font-serif text-lg font-semibold text-gold-200">
+                  {p.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-foreground/60">
-                  {r.scope}
+                  {p.areas.join(" · ")}
                 </p>
               </Reveal>
             ))}
           </div>
+          <Reveal className="mt-10 text-center">
+            <Button href="/proje-deneyimimiz" variant="outline">
+              {t("refCta")}
+            </Button>
+          </Reveal>
         </Container>
       </section>
 
-      {/* Blog önizleme */}
+      {/* Simurg Insights — son üç analiz */}
       <section className="border-t border-gold-400/15 bg-ink-900/50 py-16 sm:py-24">
         <Container>
-          <Reveal className="flex flex-col items-center justify-between gap-6 rounded-3xl border border-gold-400/15 bg-ink-700/40 p-8 text-center sm:flex-row sm:p-10 sm:text-left">
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-400">
-                {t("blogLabel")}
-              </span>
-              <h3 className="mt-3 font-serif text-2xl font-semibold text-foreground">
-                {t("blogTitle")}
-              </h3>
-              <p className="mt-2 max-w-xl text-sm text-foreground/60">
-                {t("blogText")}
-              </p>
-            </div>
-            <Button href="/blog" className="shrink-0">
-              {tc("viewAll")}
-            </Button>
+          <SectionTitle
+            eyebrow={t("insightsEyebrow")}
+            title={t("insightsTitle")}
+            subtitle={t("insightsText")}
+          />
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {insights.map((post, i) => (
+              <Reveal key={post.slug} delay={i * 0.08}>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="group flex h-full flex-col rounded-2xl border border-gold-400/15 bg-ink-700/50 p-7 transition-all hover:-translate-y-1 hover:border-gold-400/40"
+                >
+                  <div className="flex items-center gap-3 text-xs uppercase tracking-[0.12em] text-gold-400">
+                    <span>{getCategoryLabel(post.category, locale)}</span>
+                    <span className="h-1 w-1 rounded-full bg-gold-400/50" />
+                    <span className="text-foreground/45">
+                      {formatInsightDate(post.date, locale)}
+                    </span>
+                  </div>
+                  <h3 className="mt-4 font-serif text-lg font-semibold text-foreground group-hover:text-gold-200">
+                    {post.title}
+                  </h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-foreground/60">
+                    {post.excerpt}
+                  </p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-gold-300 transition-all group-hover:gap-3">
+                    {tc("readMore")}
+                    <svg viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="mt-10 text-center">
+            <Button href="/blog">{tc("viewAll")}</Button>
           </Reveal>
         </Container>
       </section>

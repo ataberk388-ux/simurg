@@ -6,6 +6,7 @@ import { setRequestLocale } from "next-intl/server";
 import "../globals.css";
 import { site } from "@/lib/site";
 import { routing } from "@/i18n/routing";
+import { organizationJsonLd } from "@/lib/seo";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SmoothScroll } from "@/components/SmoothScroll";
@@ -15,6 +16,7 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 import { Preloader } from "@/components/Preloader";
 import { CustomCursor } from "@/components/CustomCursor";
 import { GoldThread } from "@/components/GoldThread";
+import { Analytics } from "@/components/Analytics";
 
 const serif = Playfair_Display({
   variable: "--font-serif-custom",
@@ -76,24 +78,7 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "AccountingService",
-    name: site.legalName,
-    description: site.description,
-    url: site.url,
-    email: site.email,
-    telephone: site.phone,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: site.address.line,
-      addressLocality: "Kadıköy",
-      addressRegion: "İstanbul",
-      addressCountry: "TR",
-    },
-    areaServed: "TR",
-    priceRange: "₺₺",
-  };
+  const jsonLd = organizationJsonLd(locale);
 
   return (
     <html
@@ -118,6 +103,7 @@ export default async function LocaleLayout({
           </SmoothScroll>
           <FloatingWhatsApp />
           <CookieConsent />
+          <Analytics />
         </NextIntlClientProvider>
       </body>
     </html>

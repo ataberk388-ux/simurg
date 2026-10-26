@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
+import { getLocale } from "next-intl/server";
+import { pageAlternates } from "@/lib/seo";
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/sections/PageHero";
 import { CareerForm } from "@/components/CareerForm";
 
-export const metadata: Metadata = {
-  title: "Kariyer",
-  description:
-    "Simurg Finansal Danışmanlık A.Ş. ile çalışmak isteyen adaylar için genel başvuru.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return {
+    title: "Kariyer",
+    description:
+      "Simurg Finansal Danışmanlık A.Ş. ile çalışmak isteyen adaylar için genel başvuru.",
+    alternates: pageAlternates("/kariyer", locale),
+  };
+}
 
 export default async function CareerPage() {
   const tp = await getTranslations("pages");

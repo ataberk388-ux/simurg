@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { services } from "@/content/services";
-import { blogPosts } from "@/content/blog";
+import { allInsights } from "@/content/insights";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/grup-yapimiz",
     "/hizmetler",
     "/danismanlar",
-    "/referanslar",
+    "/proje-deneyimimiz",
     "/blog",
     "/kariyer",
     "/iletisim",
@@ -38,12 +38,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const blogPages: MetadataRoute.Sitemap = blogPosts.map((p) => ({
+  const insightPages: MetadataRoute.Sitemap = allInsights.map((p) => ({
     url: `${site.url}/blog/${p.slug}`,
-    lastModified: now,
+    lastModified: p.date.length > 4 ? new Date(p.date) : now,
     changeFrequency: "monthly",
     priority: 0.6,
   }));
 
-  return [...staticPages, ...servicePages, ...blogPages];
+  // TR prefiksiz, EN /en önekli; her yol iki dilde listelenir.
+  const all = [...staticPages, ...servicePages, ...insightPages];
+  const enPages: MetadataRoute.Sitemap = all.map((e) => ({
+    ...e,
+    url: e.url.replace(site.url, `${site.url}/en`),
+  }));
+
+  return [...all, ...enPages];
 }

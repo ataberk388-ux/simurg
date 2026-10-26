@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
+import { getLocale } from "next-intl/server";
+import { pageAlternates } from "@/lib/seo";
 import { LegalLayout } from "@/components/sections/LegalLayout";
 
-export const metadata: Metadata = {
-  title: "Çerez Politikası",
-  description: "Web sitemizde kullanılan çerezler hakkında bilgilendirme.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return {
+    title: "Çerez Politikası",
+    description: "Web sitemizde kullanılan çerezler hakkında bilgilendirme.",
+    alternates: pageAlternates("/cerez-politikasi", locale),
+  };
+}
 
 export default function CookiePage() {
   return (

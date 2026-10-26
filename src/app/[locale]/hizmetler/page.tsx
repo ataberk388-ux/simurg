@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageAlternates } from "@/lib/seo";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/sections/PageHero";
@@ -6,11 +7,15 @@ import { ServiceCard } from "@/components/sections/ServiceCard";
 import { CTABand } from "@/components/sections/CTABand";
 import { getServices } from "@/content/services";
 
-export const metadata: Metadata = {
-  title: "Hizmetlerimiz",
-  description:
-    "Mali ve vergisel danışmanlık, şirket kuruluşu, finansal yapılandırma, yatırım & teşvik, uluslararası iş geliştirme, hukuki koordinasyon ve stratejik planlama alanlarında uçtan uca çözümler.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return {
+    title: "Hizmetlerimiz",
+    description:
+      "Mali ve vergisel danışmanlık, şirket kuruluşu, finansal yapılandırma, yatırım & teşvik, uluslararası iş geliştirme, hukuki koordinasyon ve stratejik planlama alanlarında uçtan uca çözümler.",
+    alternates: pageAlternates("/hizmetler", locale),
+  };
+}
 
 export default async function ServicesPage() {
   const locale = await getLocale();

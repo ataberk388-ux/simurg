@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { getLocale } from "next-intl/server";
+import { pageAlternates } from "@/lib/seo";
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
@@ -6,11 +8,15 @@ import { PageHero } from "@/components/sections/PageHero";
 import { ContactForm } from "@/components/ContactForm";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "İletişim",
-  description:
-    "Simurg Finansal Danışmanlık ile iletişime geçin. Ücretsiz ön görüşme için formu doldurun, arayın veya WhatsApp'tan yazın.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return {
+    title: "İletişim",
+    description:
+      "Simurg Finansal Danışmanlık ile iletişime geçin. Ücretsiz ön görüşme için formu doldurun, arayın veya WhatsApp'tan yazın.",
+    alternates: pageAlternates("/iletisim", locale),
+  };
+}
 
 const mapQuery = encodeURIComponent(
   "Rasimpaşa Mahallesi Ayrılıkçeşme Sokak No:142A Kadıköy İstanbul",

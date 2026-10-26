@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageAlternates } from "@/lib/seo";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
@@ -6,11 +7,15 @@ import { PageHero } from "@/components/sections/PageHero";
 import { CTABand } from "@/components/sections/CTABand";
 import { getMission, getVision, getPhilosophy } from "@/content/about";
 
-export const metadata: Metadata = {
-  title: "Misyon & Vizyon",
-  description:
-    "Simurg Finansal Danışmanlık A.Ş.'nin misyonu, vizyonu ve marka felsefesi.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return {
+    title: "Misyon & Vizyon",
+    description:
+      "Simurg Finansal Danışmanlık A.Ş.'nin misyonu, vizyonu ve marka felsefesi.",
+    alternates: pageAlternates("/misyon-vizyon", locale),
+  };
+}
 
 export default async function MissionVisionPage() {
   const locale = await getLocale();

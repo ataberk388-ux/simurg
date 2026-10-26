@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
-const KEY = "simurg-cookie-consent";
+import { CONSENT_KEY as KEY, CONSENT_EVENT } from "@/lib/analytics";
 
 type Prefs = { necessary: true; analytics: boolean; marketing: boolean };
 
@@ -53,6 +53,8 @@ export function CookieConsent() {
     setPrefs(p);
     setShowBanner(false);
     setPanelOpen(false);
+    // Analytics bileseni onayi dinler
+    window.dispatchEvent(new Event(CONSENT_EVENT));
   };
 
   const acceptAll = () => persist({ necessary: true, analytics: true, marketing: true });

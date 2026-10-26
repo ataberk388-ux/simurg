@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, subjects, type ContactInput } from "@/lib/contact-schema";
 import { SuccessBurst } from "@/components/SuccessBurst";
 import { cn } from "@/lib/cn";
+import { track } from "@/lib/analytics";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -47,9 +48,11 @@ export function ContactForm() {
         throw new Error(body.error || t("genericError"));
       }
       setStatus("success");
+      track("contact_form_success", { form_subject: data.subject });
       reset();
     } catch (err) {
       setStatus("error");
+      track("contact_form_error");
       setServerError(err instanceof Error ? err.message : t("genericError"));
     }
   };

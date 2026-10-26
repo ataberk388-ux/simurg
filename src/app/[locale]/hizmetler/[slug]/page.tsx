@@ -8,9 +8,12 @@ import { ServiceIcon } from "@/components/ServiceIcon";
 import { CTABand } from "@/components/sections/CTABand";
 import { serviceSlugs, getService, getServices } from "@/content/services";
 import { getServiceExtra } from "@/content/service-extra";
+import { getServiceApproach } from "@/content/service-approach";
+import { getInsight } from "@/content/insights";
 import { getProcessSteps } from "@/content/home";
 import { getLocale, getTranslations } from "next-intl/server";
 import { site } from "@/lib/site";
+import { pageAlternates } from "@/lib/seo";
 
 export function generateStaticParams() {
   return serviceSlugs.map((slug) => ({ slug }));
@@ -22,9 +25,14 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const service = getService(slug);
-  if (!service) return { title: "Hizmet bulunamadı" };
-  return { title: service.title, description: service.short };
+  const locale = await getLocale();
+  const service = getService(slug, locale);
+  if (!service) return { title: "404" };
+  return {
+    title: service.title,
+    description: service.short,
+    alternates: pageAlternates(`/hizmetler/${slug}`, locale),
+  };
 }
 
 export default async function ServiceDetailPage({
@@ -39,9 +47,16 @@ export default async function ServiceDetailPage({
 
   const ts = await getTranslations("service");
   const tc = await getTranslations("common");
+  const ti = await getTranslations("insights");
   const processSteps = getProcessSteps(locale);
   const extra = getServiceExtra(slug, locale);
+  const approach = getServiceApproach(slug, locale);
   const others = getServices(locale).filter((s) => s.slug !== slug);
+
+  // Yayımlanmamış makalelere bağlantı verilmez.
+  const insight = approach?.insightSlug
+    ? getInsight(approach.insightSlug, locale)
+    : undefined;
 
   return (
     <>
@@ -78,6 +93,79 @@ export default async function ServiceDetailPage({
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr]">
             <div className="space-y-12">
+              {/* Müşteri sorusu + sorunun etkisi */}
+              {approach && (
+                <Reveal className="rounded-3xl border border-gold-400/25 bg-gradient-to-br from-ink-700 to-ink-900 p-7 sm:p-9">
+                  <h2 className="font-serif text-2xl font-semibold leading-snug text-gold-200 sm:text-[1.7rem]">
+                    {approach.question}
+                  </h2>
+                  <p className="mt-4 leading-relaxed text-foreground/70">
+                    {approach.impact}
+                  </p>
+                </Reveal>
+              )}
+
+              {/* Çözüm Yaklaşımımız — eski "nasıl destek olur" bölümüyle birleştirildi */}
+              <Reveal>
+                <h2 className="font-serif text-2xl font-semibold text-foreground">
+                  {ts("approach")}
+                </h2>
+                {approach && (
+                  <p className="mt-5 leading-relaxed text-foreground/75">
+                    {approach.approach}
+                  </p>
+                )}
+                <div className="mt-6 space-y-4">
+                  {service.details.map((d) => (
+                    <div key={d.heading} className="rounded-2xl border border-gold-400/15 bg-ink-700/40 p-6">
+                      <h3 className="font-serif text-lg font-semibold text-gold-200">
+                        {d.heading}
+                      </h3>
+                      <p className="mt-2 leading-relaxed text-foreground/65">
+                        {d.body}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+
+              {/* Çalışma kapsamı ve çıktıları */}
+              {approach && (
+                <Reveal>
+                  <h2 className="font-serif text-2xl font-semibold text-foreground">
+                    {ts("deliverables")}
+                  </h2>
+                  <ul className="mt-5 space-y-3">
+                    {approach.deliverables.map((d) => (
+                      <li
+                        key={d}
+                        className="flex items-start gap-3 rounded-xl border border-gold-400/15 bg-ink-700/40 p-4 text-sm text-foreground/75"
+                      >
+                        <svg viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0 fill-none stroke-gold-400" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M20 6 9 17l-5-5" />
+                        </svg>
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+              )}
+
+              {/* Hizmet kapsamındaki başlıklar */}
+              <Reveal>
+                <h2 className="font-serif text-2xl font-semibold text-foreground">
+                  {ts("scope")}
+                </h2>
+                <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                  {service.features.map((f) => (
+                    <li key={f} className="flex items-start gap-3 text-sm text-foreground/75">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+
               {/* Kimler için uygundur */}
               {extra?.forWhom && (
                 <Reveal>
@@ -94,42 +182,6 @@ export default async function ServiceDetailPage({
                   </ul>
                 </Reveal>
               )}
-
-              {/* Kapsamında neler yapılır */}
-              <Reveal>
-                <h2 className="font-serif text-2xl font-semibold text-foreground">
-                  {ts("scope")}
-                </h2>
-                <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-                  {service.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-sm text-foreground/75">
-                      <svg viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0 fill-none stroke-gold-400" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M20 6 9 17l-5-5" />
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
-
-              {/* Simurg nasıl destek olur */}
-              <Reveal>
-                <h2 className="font-serif text-2xl font-semibold text-foreground">
-                  {ts("howWeHelp")}
-                </h2>
-                <div className="mt-5 space-y-4">
-                  {service.details.map((d) => (
-                    <div key={d.heading} className="rounded-2xl border border-gold-400/15 bg-ink-700/40 p-6">
-                      <h3 className="font-serif text-lg font-semibold text-gold-200">
-                        {d.heading}
-                      </h3>
-                      <p className="mt-2 leading-relaxed text-foreground/65">
-                        {d.body}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </Reveal>
 
               {/* Süreç adımları */}
               <Reveal>
@@ -175,26 +227,69 @@ export default async function ServiceDetailPage({
                   </div>
                 </Reveal>
               )}
+
+              {/* İlgili Simurg Insights */}
+              {approach && (
+                <Reveal>
+                  <h2 className="font-serif text-2xl font-semibold text-foreground">
+                    {ts("relatedInsight")}
+                  </h2>
+                  {insight ? (
+                    <Link
+                      href={`/blog/${insight.slug}`}
+                      className="group mt-5 flex items-center justify-between gap-5 rounded-2xl border border-gold-400/20 bg-ink-700/40 p-6 transition-all hover:border-gold-400/45"
+                    >
+                      <span>
+                        <span className="block text-[11px] uppercase tracking-[0.16em] text-gold-400/80">
+                          {ti("brand")}
+                        </span>
+                        <span className="mt-1.5 block font-serif text-lg font-semibold text-foreground group-hover:text-gold-200">
+                          {insight.title}
+                        </span>
+                      </span>
+                      <svg viewBox="0 0 24 24" className="h-5 w-5 shrink-0 fill-none stroke-gold-400" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                      </svg>
+                    </Link>
+                  ) : (
+                    <div className="mt-5 rounded-2xl border border-dashed border-gold-400/25 bg-ink-900/40 p-6">
+                      <span className="block text-[11px] uppercase tracking-[0.16em] text-gold-400/80">
+                        {ti("brand")}
+                      </span>
+                      <p className="mt-2 font-serif text-lg text-foreground/80">
+                        {approach.insightTopic}
+                      </p>
+                    </div>
+                  )}
+                </Reveal>
+              )}
+
+              {/* Hukuki ve mali hizmet sınırı */}
+              <Reveal className="rounded-xl border border-gold-400/15 bg-ink-900/50 p-5">
+                <p className="text-xs leading-relaxed text-foreground/50">
+                  {ts("scopeLimitNote")}
+                </p>
+              </Reveal>
             </div>
 
             {/* Yan panel — CTA */}
             <div>
               <Reveal className="h-fit space-y-4 lg:sticky lg:top-28">
                 <div className="rounded-2xl border border-gold-400/20 bg-ink-800/80 p-7">
-                  <h3 className="font-serif text-xl font-semibold text-foreground">
+                  <h2 className="font-serif text-xl font-semibold text-foreground">
                     {ts("ctaTitle")}
-                  </h3>
+                  </h2>
                   <p className="mt-2 text-sm text-foreground/60">
                     {ts("ctaText")}
                   </p>
                   <div className="mt-6 flex flex-col gap-3">
-                    <Button href="/iletisim" className="w-full">
-                      {ts("ctaButton")}
+                    <Button href="/iletisim" className="w-full text-center">
+                      {approach?.cta ?? ts("ctaButton")}
                     </Button>
                     <Button
                       href={`https://wa.me/${site.whatsapp}`}
                       variant="outline"
-                      className="w-full"
+                      className="w-full text-center"
                     >
                       {tc("whatsapp")}
                     </Button>

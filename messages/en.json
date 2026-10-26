@@ -7,11 +7,11 @@
     "missionVision": "Mission & Vision",
     "group": "Our Group",
     "services": "Services",
-    "consultants": "Our Consultants",
-    "references": "References",
-    "blog": "Blog",
+    "consultants": "Our Team",
+    "blog": "Simurg Insights",
     "contact": "Contact",
-    "career": "Careers"
+    "career": "Careers",
+    "projects": "Project Experience"
   },
   "common": {
     "whatsapp": "Message on WhatsApp",
@@ -22,7 +22,6 @@
     "viewAll": "View All",
     "getInTouch": "Get in Touch",
     "requestAppointment": "Request an Appointment",
-    "comingSoon": "Coming soon",
     "allServices": "All Services"
   },
   "hero": {
@@ -50,15 +49,16 @@
     "whySubtitle": "Because sustainable success begins with the right analysis and a strong companion.",
     "processEyebrow": "How the Process Works",
     "processTitle": "A measurable, transparent and manageable system",
-    "consultantsEyebrow": "Our Consultants",
-    "consultantsTitle": "Meet our experienced team",
-    "consultantsCta": "Meet Our Consultants",
-    "refEyebrow": "Our Project Experience",
-    "refTitle": "Experiences from projects we run with a confidentiality principle",
-    "refSubtitle": "We value the confidentiality of the institutions we work with; we share our experiences by sector and service scope.",
-    "blogLabel": "Blog / Articles",
-    "blogTitle": "Current incentives, tax agenda and financial guides",
-    "blogText": "We share up-to-date information and expert content relevant to your company in our blog section."
+    "consultantsEyebrow": "Our Team",
+    "consultantsTitle": "Meet our team",
+    "consultantsCta": "Meet Our Team",
+    "refEyebrow": "Project Experience",
+    "refTitle": "Different sectors, integrated solutions",
+    "refSubtitle": "In line with our principles of confidentiality and commercial trust, we share our project experience at a general level, without disclosing the institutions or parties involved.",
+    "refCta": "Explore Our Project Experience",
+    "insightsEyebrow": "Simurg Insights",
+    "insightsTitle": "Financial intelligence and strategic perspective",
+    "insightsText": "We produce original strategic insights for companies and decision-makers from verified developments."
   },
   "cta": {
     "title1": "Let's build the right roadmap",
@@ -66,26 +66,20 @@
     "subtitle": "In the first meeting, let's analyze your needs and identify tailored financial and strategic solution areas together.",
     "appointment": "Request an Appointment"
   },
-  "blog": {
-    "eyebrow": "Blog / Articles",
-    "title1": "Current information and",
-    "titleHi": "expert content",
-    "desc": "Content that adds value to your business across incentives, the tax agenda, company formation, investment and export.",
-    "allPosts": "All Articles",
-    "otherPosts": "Other articles",
-    "ctaNote": "For advisory tailored to your company on this topic,",
-    "ctaLink": "get in touch with us"
-  },
   "service": {
     "forWhom": "Who is this service for?",
-    "scope": "What does the service include?",
+    "scope": "What this service covers",
     "howWeHelp": "How does Simurg support this process?",
     "steps": "Process steps",
     "faq": "Frequently asked questions",
-    "ctaTitle": "Request a consultation for this service",
+    "ctaTitle": "Request an introductory meeting",
     "ctaText": "Let's determine the right solution for your project together.",
     "ctaButton": "Quote / Consultation",
-    "others": "Other services"
+    "others": "Other services",
+    "approach": "Our Solution Approach",
+    "deliverables": "Scope of work and deliverables",
+    "relatedInsight": "Related Simurg Insights",
+    "scopeLimitNote": "Legal and financial services that require a licence or professional authorisation are provided by the relevant licensed professionals. Simurg's role in these processes is coordination and project management."
   },
   "footer": {
     "tagline": "An integrated solution partner uniting financial, legal and strategic advisory under one roof.",
@@ -114,7 +108,6 @@
     "mission": "Mission",
     "vision": "Vision",
     "philosophy": "Brand Philosophy",
-    "referencesNote": "Actual reference logos and detailed success stories will be added in due course, subject to our business partners' approval.",
     "aboutTitle1": "A strategic companion",
     "aboutTitleHi": "for companies",
     "aboutDesc": "Simurg is an integrated solution partner uniting financial, fiscal, legal and strategic advisory under one roof.",
@@ -125,11 +118,9 @@
     "linkStoryDesc": "The journey of thirty birds and our philosophy",
     "linkMvDesc": "Our values and goal",
     "linkGroupDesc": "Our integrated ecosystem",
-    "linkConsultantsDesc": "Our experienced team",
-    "consultantsTitle1": "Meet our",
-    "consultantsTitleHi": "consultants",
-    "consultantsDesc": "Our team is experienced in strategic management, financial advisory and international business development.",
-    "consultantsPhotoNote": "Profile photos will be added before launch.",
+    "linkConsultantsDesc": "Our integrated expert team",
+    "consultantsTitle1": "Meet",
+    "consultantsTitleHi": "our team",
     "groupNote": "By bringing together fiscal operations, financial advisory, production, trade and export experience under one roof, this structure makes Simurg an integrated solution partner that applies in the field rather than a purely theoretical advisory firm.",
     "careerTitle1": "Career at",
     "careerTitleHi": "Simurg",
@@ -223,5 +214,32 @@
     "s6": "Legal coordination",
     "s7": "Other"
   },
-  "lang": { "tr": "TR", "en": "EN" }
+  "lang": {
+    "tr": "TR",
+    "en": "EN"
+  },
+  "projects": {
+    "areas": "Areas of work",
+    "cta": "Request an Introductory Meeting"
+  },
+  "insights": {
+    "brand": "Simurg Insights",
+    "tagline": "Financial Intelligence and Strategic Perspective",
+    "title1": "Financial intelligence and",
+    "titleHi": "strategic perspective",
+    "desc": "Our corporate analysis publication, producing original strategic insights for companies and decision-makers from verified developments.",
+    "principle": "Simurg Insights is not a news feed that republishes headlines. Our editorial principle is not to relay the agenda but to make sense of it for business.",
+    "metaTitle": "Simurg Insights",
+    "metaDesc": "Simurg's original strategic commentary on markets, corporate finance, international trade and regulation.",
+    "latest": "Latest analysis",
+    "summary": "Executive summary",
+    "assessment": "Simurg's Strategic Assessment",
+    "sources": "Primary sources",
+    "updated": "Updated",
+    "allPosts": "All Analyses",
+    "otherPosts": "Related articles",
+    "ctaFallbackTitle": "Let us assess this topic for your company",
+    "ctaFallbackText": "Tell us what you need and we will identify the right areas of work together.",
+    "ctaButton": "Request an Introductory Meeting"
+  }
 }
