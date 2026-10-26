@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0b1f3a;
+  --background: #050b16;
   --foreground: #eef2f8;
 
   /* Marka altın paleti (brief: #C9A00A ana, #D8B24C parlak vurgu) */
@@ -14,11 +14,11 @@
   --gold-600: #8a6d08;
 
   /* "ink" tokenları artık lacivert tonları (isimler korundu) */
-  --ink-900: #050b16; /* en koyu — footer/derin zemin */
-  --ink-800: #0b1f3a; /* ana lacivert — gövde zemini */
-  --ink-700: #122a4a; /* kart zemini */
-  --ink-600: #1f3864; /* kurumsal lacivert — hover */
-  --ink-500: #2c4a78; /* açık lacivert — kenarlık */
+  --ink-900: #02060d; /* en koyu — footer/derin zemin */
+  --ink-800: #050b16; /* ana zemin — geçiş perdesinin koyu laciverti */
+  --ink-700: #0c1729; /* kart zemini */
+  --ink-600: #16263f; /* hover */
+  --ink-500: #22395c; /* kenarlık */
 }
 
 @theme inline {
