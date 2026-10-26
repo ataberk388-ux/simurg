@@ -2,10 +2,10 @@
 
 export function CookiePrefsButton({
   className,
-  label = "Çerez Tercihlerimi Yönet",
+  label,
 }: {
   className?: string;
-  label?: string;
+  label: string;
 }) {
   return (
     <button

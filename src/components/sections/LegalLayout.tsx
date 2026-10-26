@@ -1,9 +1,10 @@
 import { Container } from "@/components/ui/Container";
+import { getTranslations } from "next-intl/server";
 import { PageHero } from "@/components/sections/PageHero";
 
 export type LegalSection = { heading: string; body: string[] };
 
-export function LegalLayout({
+export async function LegalLayout({
   title,
   updated,
   intro,
@@ -14,14 +15,16 @@ export function LegalLayout({
   intro?: string;
   sections: LegalSection[];
 }) {
+  const t = await getTranslations("legal");
+
   return (
     <>
-      <PageHero eyebrow="Yasal" title={title} description={intro} />
+      <PageHero eyebrow={t("eyebrow")} title={title} description={intro} />
       <section className="pb-16">
         <Container>
           <div className="mx-auto max-w-3xl">
             <p className="mb-10 text-xs uppercase tracking-[0.15em] text-foreground/40">
-              Son güncelleme: {updated}
+              {t("updated")}: {updated}
             </p>
             <div className="space-y-8">
               {sections.map((s, i) => (

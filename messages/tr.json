@@ -22,7 +22,8 @@
     "viewAll": "Tümünü Görüntüle",
     "getInTouch": "İletişime Geçin",
     "requestAppointment": "Randevu Talep Et",
-    "allServices": "Tüm Hizmetler"
+    "allServices": "Tüm Hizmetler",
+    "whatsappPrefill": "Merhaba, Simurg Finansal Danışmanlık'tan bilgi almak istiyorum."
   },
   "hero": {
     "line1": "Potansiyelinizi keşfedin,",
@@ -241,5 +242,20 @@
     "ctaFallbackTitle": "Bu konuyu şirketiniz için değerlendirelim",
     "ctaFallbackText": "İhtiyacınızı dinleyelim, uygun çalışma alanlarını birlikte belirleyelim.",
     "ctaButton": "Ön Görüşme Talep Edin"
+  },
+  "brand": {
+    "name": "SİMURG",
+    "sub": "Finansal Danışmanlık",
+    "subLegal": "Finansal Danışmanlık A.Ş."
+  },
+  "a11y": {
+    "menu": "Menü",
+    "scrollDown": "Aşağı kaydır",
+    "whatsapp": "WhatsApp ile yazın",
+    "emblem": "Simurg Anka kuşu amblemi"
+  },
+  "legal": {
+    "eyebrow": "Yasal",
+    "updated": "Son güncelleme"
   }
 }

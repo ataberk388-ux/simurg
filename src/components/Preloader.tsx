@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export function Preloader() {
+  const tb = useTranslations("brand");
   const [show, setShow] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -79,7 +81,7 @@ export function Preloader() {
               show: { transition: { staggerChildren: 0.08, delayChildren: 0.5 } },
             }}
           >
-            {"SİMURG".split("").map((ch, i) => (
+            {tb("name").split("").map((ch, i) => (
               <motion.span
                 key={i}
                 className="text-gold-gradient"
@@ -106,7 +108,7 @@ export function Preloader() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.4, duration: 0.6 }}
           >
-            Finansal Danışmanlık
+            {tb("sub")}
           </motion.p>
         </motion.div>
       )}

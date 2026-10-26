@@ -14,7 +14,6 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { Preloader } from "@/components/Preloader";
-import { CustomCursor } from "@/components/CustomCursor";
 import { GoldThread } from "@/components/GoldThread";
 import { Analytics } from "@/components/Analytics";
 
@@ -34,38 +33,61 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: {
-    default: `${site.legalName} | Finansal ve Stratejik Danışmanlık`,
-    template: `%s | ${site.shortName}`,
-  },
-  description: site.description,
-  keywords: [
-    "finansal danışmanlık",
-    "mali müşavirlik",
-    "şirket kuruluşu",
-    "yatırım teşvik",
-    "uluslararası iş geliştirme",
-    "stratejik danışmanlık",
-    "Simurg Danışmanlık",
-  ],
-  authors: [{ name: site.legalName }],
-  openGraph: {
-    type: "website",
-    locale: "tr_TR",
-    url: site.url,
-    siteName: site.name,
-    title: `${site.legalName} | Finansal ve Stratejik Danışmanlık`,
-    description: site.description,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: site.name,
-    description: site.description,
-  },
-  robots: { index: true, follow: true },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const en = locale === "en";
+
+  const name = en ? site.legalNameEn : site.legalName;
+  const description = en ? site.descriptionEn : site.description;
+  const title = en
+    ? `${name} | Financial and Strategic Advisory`
+    : `${name} | Finansal ve Stratejik Danışmanlık`;
+
+  return {
+    metadataBase: new URL(site.url),
+    title: { default: title, template: `%s | ${site.shortName}` },
+    description,
+    keywords: en
+      ? [
+          "financial consulting",
+          "fiscal advisory",
+          "company formation in Türkiye",
+          "investment incentives",
+          "international business development",
+          "strategic advisory",
+          "Simurg Consulting",
+        ]
+      : [
+          "finansal danışmanlık",
+          "mali müşavirlik",
+          "şirket kuruluşu",
+          "yatırım teşvik",
+          "uluslararası iş geliştirme",
+          "stratejik danışmanlık",
+          "Simurg Danışmanlık",
+        ],
+    authors: [{ name }],
+    openGraph: {
+      type: "website",
+      locale: en ? "en_US" : "tr_TR",
+      alternateLocale: en ? "tr_TR" : "en_US",
+      url: en ? `${site.url}/en` : site.url,
+      siteName: en ? site.nameEn : site.name,
+      title,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: en ? site.nameEn : site.name,
+      description,
+    },
+    robots: { index: true, follow: true },
+  };
+}
 
 export default async function LocaleLayout({
   children,
@@ -93,7 +115,6 @@ export default async function LocaleLayout({
         />
         <NextIntlClientProvider>
           <Preloader />
-          <CustomCursor />
           <ScrollProgress />
           <GoldThread />
           <SmoothScroll>

@@ -22,7 +22,8 @@
     "viewAll": "View All",
     "getInTouch": "Get in Touch",
     "requestAppointment": "Request an Appointment",
-    "allServices": "All Services"
+    "allServices": "All Services",
+    "whatsappPrefill": "Hello, I would like to get information from Simurg Financial Consulting."
   },
   "hero": {
     "line1": "Discover your potential,",
@@ -241,5 +242,20 @@
     "ctaFallbackTitle": "Let us assess this topic for your company",
     "ctaFallbackText": "Tell us what you need and we will identify the right areas of work together.",
     "ctaButton": "Request an Introductory Meeting"
+  },
+  "brand": {
+    "name": "SIMURG",
+    "sub": "Financial Consulting",
+    "subLegal": "Financial Consulting Inc."
+  },
+  "a11y": {
+    "menu": "Menu",
+    "scrollDown": "Scroll down",
+    "whatsapp": "Message us on WhatsApp",
+    "emblem": "Simurg phoenix emblem"
+  },
+  "legal": {
+    "eyebrow": "Legal",
+    "updated": "Last updated"
   }
 }

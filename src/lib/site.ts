@@ -7,6 +7,9 @@ export const site = {
   taglineEn: "Discover your potential, build your future with strategy.",
   description:
     "Simurg Finansal Danışmanlık A.Ş.; mali, finansal, hukuki ve stratejik danışmanlık çözümleriyle şirketinizin büyüme, dönüşüm ve kurumsallaşma yolculuğunda güvenilir çözüm ortağınızdır.",
+  descriptionEn:
+    "Simurg Financial Consulting Inc. is your trusted partner in your company's growth, transformation and corporate structuring journey, with fiscal, financial, legal and strategic advisory solutions.",
+  nameEn: "Simurg Financial Consulting",
   url: "https://www.simurgdanismanlik.com",
   email: "info@simurgdanismanlik.com",
   phone: "+90 530 282 96 92",

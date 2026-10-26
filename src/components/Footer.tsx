@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 import { PhoenixLogo } from "@/components/PhoenixLogo";
@@ -36,6 +36,9 @@ export async function Footer() {
   const tf = await getTranslations("footer");
   const tn = await getTranslations("nav");
   const tl = await getTranslations("legalNav");
+  const tb = await getTranslations("brand");
+  const locale = await getLocale();
+  const legalName = locale === "en" ? site.legalNameEn : site.legalName;
 
   return (
     <footer className="relative mt-24 border-t border-gold-400/15 bg-ink-900">
@@ -48,10 +51,10 @@ export async function Footer() {
               <PhoenixLogo size={44} />
               <span className="flex flex-col leading-none">
                 <span className="font-serif text-xl font-semibold tracking-wide text-foreground">
-                  SİMURG
+                  {tb("name")}
                 </span>
                 <span className="text-[9px] uppercase tracking-[0.3em] text-gold-400/80">
-                  Finansal Danışmanlık A.Ş.
+                  {tb("subLegal")}
                 </span>
               </span>
             </Link>
@@ -142,7 +145,7 @@ export async function Footer() {
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-gold-400/10 pt-7 text-xs text-foreground/40 sm:flex-row">
           <p>
-            © {new Date().getFullYear()} {site.legalName}. {tf("rights")}
+            © {new Date().getFullYear()} {legalName}. {tf("rights")}
           </p>
           <p>Kadıköy / İstanbul</p>
         </div>

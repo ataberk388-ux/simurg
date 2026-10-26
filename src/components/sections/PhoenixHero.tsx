@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -44,6 +44,8 @@ export function PhoenixHero() {
   const [mode, setMode] = useState<"loading" | "3d" | "fallback">("loading");
   const t = useTranslations("hero");
   const tc = useTranslations("common");
+  const ta = useTranslations("a11y");
+  const locale = useLocale();
 
   useEffect(() => {
     const reduced = window.matchMedia(
@@ -105,7 +107,7 @@ export function PhoenixHero() {
             onUnrecoverable={() => setMode("fallback")}
           />
         )}
-        {mode === "fallback" && <PhoenixFallback />}
+        {mode === "fallback" && <PhoenixFallback alt={ta("emblem")} />}
       </div>
 
       {/* İmleç takipli ışık */}
@@ -129,7 +131,7 @@ export function PhoenixHero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-ink-900/40 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.3em] text-gold-300 backdrop-blur"
         >
-          {site.legalName}
+          {locale === "en" ? site.legalNameEn : site.legalName}
         </motion.span>
       </div>
 
@@ -202,7 +204,7 @@ export function PhoenixHero() {
       <a
         href="#icerik"
         className="absolute bottom-2 left-1/2 z-10 hidden -translate-x-1/2 text-gold-300/60 transition-colors hover:text-gold-300 sm:block"
-        aria-label="Aşağı kaydır"
+        aria-label={ta("scrollDown")}
       >
         <span className="flex h-9 w-5 justify-center rounded-full border border-gold-400/40 pt-1.5">
           <span className="h-2 w-1 animate-bounce rounded-full bg-gold-400" />

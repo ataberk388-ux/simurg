@@ -113,12 +113,6 @@ html.lenis body {
   color: #0a0a0a;
 }
 
-/* Özel imleç aktifken yerel imleci gizle */
-body.cursor-none,
-body.cursor-none * {
-  cursor: none !important;
-}
-
 /* İnce kaydırma çubuğu */
 ::-webkit-scrollbar {
   width: 10px;

@@ -32,6 +32,8 @@ export function Header() {
   const [subOpen, setSubOpen] = useState<string | null>(null);
   const pathname = usePathname();
   const t = useTranslations("nav");
+  const tb = useTranslations("brand");
+  const ta = useTranslations("a11y");
   const label = (href: string, fallback: string) =>
     navKey[href] ? t(navKey[href]) : fallback;
 
@@ -61,10 +63,10 @@ export function Header() {
           <PhoenixLogo size={38} className="transition-transform duration-500 group-hover:scale-110" />
           <span className="flex flex-col leading-none">
             <span className="font-serif text-lg font-semibold tracking-wide text-foreground">
-              SİMURG
+              {tb("name")}
             </span>
             <span className="text-[9px] uppercase tracking-[0.28em] text-gold-400/80">
-              Finansal Danışmanlık
+              {tb("sub")}
             </span>
           </span>
         </Link>
@@ -145,7 +147,7 @@ export function Header() {
         {/* Mobil hamburger */}
         <button
           className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 xl:hidden"
-          aria-label="Menü"
+          aria-label={ta("menu")}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >

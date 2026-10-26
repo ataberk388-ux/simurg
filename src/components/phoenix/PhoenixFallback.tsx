@@ -12,7 +12,7 @@ import {
 
 /* WebGL yoksa/çökerse: CSS + Framer ile TAM EKRAN animasyonlu Anka
    (küllerinden doğuş + tüm ekrana yayılan korlar + nefes alan hâle + süzülme). */
-export function PhoenixFallback() {
+export function PhoenixFallback({ alt }: { alt: string }) {
   const reduced =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -114,7 +114,7 @@ export function PhoenixFallback() {
           >
             <Image
               src="/brand/phoenix.png"
-              alt="Simurg Anka kuşu amblemi"
+              alt={alt}
               fill
               priority
               sizes="80vmin"

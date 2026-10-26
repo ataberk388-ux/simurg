@@ -30,7 +30,7 @@ export function organizationJsonLd(locale: string) {
     "@id": `${site.url}/#organization`,
     name: locale === "en" ? site.legalNameEn : site.legalName,
     alternateName: site.shortName,
-    description: site.description,
+    description: locale === "en" ? site.descriptionEn : site.description,
     url: site.url,
     email: site.email,
     telephone: site.phone,

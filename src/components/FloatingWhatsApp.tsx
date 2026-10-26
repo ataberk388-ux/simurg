@@ -1,12 +1,16 @@
+import { getTranslations } from "next-intl/server";
 import { site } from "@/lib/site";
 
-export function FloatingWhatsApp() {
+export async function FloatingWhatsApp() {
+  const tc = await getTranslations("common");
+  const ta = await getTranslations("a11y");
+
   return (
     <a
-      href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent("Merhaba, Simurg Finansal Danışmanlık'tan bilgi almak istiyorum.")}`}
+      href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent(tc("whatsappPrefill"))}`}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="WhatsApp ile yazın"
+      aria-label={ta("whatsapp")}
       className="group fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-[0_8px_30px_-4px_rgba(37,211,102,0.6)] transition-transform hover:scale-110"
     >
       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#25D366] opacity-30" />
