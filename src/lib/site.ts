@@ -53,7 +53,7 @@ export const nav: NavItem[] = [
   { label: "Hizmetlerimiz", href: "/hizmetler" },
   { label: "Ekibimiz", href: "/danismanlar" },
   { label: "Proje Deneyimimiz", href: "/proje-deneyimimiz" },
-  { label: "Simurg Insights", href: "/blog" },
+  { label: "Analizler", href: "/blog" },
   { label: "İletişim", href: "/iletisim" },
 ];
 

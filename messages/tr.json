@@ -8,7 +8,7 @@
     "group": "Grup Yapımız",
     "services": "Hizmetlerimiz",
     "consultants": "Ekibimiz",
-    "blog": "Simurg Insights",
+    "blog": "Analizler",
     "contact": "İletişim",
     "career": "Kariyer",
     "projects": "Proje Deneyimimiz"
@@ -56,7 +56,7 @@
     "refTitle": "Farklı sektörler, bütünleşik çözümler",
     "refSubtitle": "Gizlilik ve ticari güven ilkelerimiz doğrultusunda proje deneyimlerimizi kurum ve taraf bilgilerini açıklamadan genel kapsamlarıyla paylaşıyoruz.",
     "refCta": "Proje Deneyimimizi İnceleyin",
-    "insightsEyebrow": "Simurg Insights",
+    "insightsEyebrow": "Simurg Analiz",
     "insightsTitle": "Finansal istihbarat ve stratejik perspektif",
     "insightsText": "Doğrulanmış gelişmelerden şirketler ve karar vericiler için özgün stratejik çıkarımlar üretiyoruz."
   },
@@ -78,7 +78,7 @@
     "others": "Diğer hizmetler",
     "approach": "Çözüm Yaklaşımımız",
     "deliverables": "Çalışma kapsamı ve çıktıları",
-    "relatedInsight": "İlgili Simurg Insights",
+    "relatedInsight": "İlgili Simurg Analizi",
     "scopeLimitNote": "Yetki veya ruhsat gerektiren hukuki ve mali hizmetler, ilgili meslek mensupları tarafından sunulur. Simurg'un bu süreçlerdeki rolü koordinasyon ve proje yönetimidir."
   },
   "footer": {
@@ -223,13 +223,13 @@
     "cta": "Ön Görüşme Talep Edin"
   },
   "insights": {
-    "brand": "Simurg Insights",
+    "brand": "Simurg Analiz",
     "tagline": "Finansal İstihbarat ve Stratejik Perspektif",
     "title1": "Finansal istihbarat ve",
     "titleHi": "stratejik perspektif",
     "desc": "Doğrulanmış gelişmelerden şirketlere ve karar vericilere yönelik özgün stratejik çıkarımlar üreten kurumsal analiz yayınımız.",
-    "principle": "Simurg Insights, haberleri yeniden yayımlayan bir haber alanı değildir. Editoryal ilkemiz gündemi aktarmak değil, iş dünyası için anlamlandırmaktır.",
-    "metaTitle": "Simurg Insights",
+    "principle": "Simurg Analiz, haberleri yeniden yayımlayan bir haber alanı değildir. Editoryal ilkemiz gündemi aktarmak değil, iş dünyası için anlamlandırmaktır.",
+    "metaTitle": "Simurg Analiz",
     "metaDesc": "Piyasa analizleri, kurumsal finans, uluslararası ticaret ve mevzuat başlıklarında Simurg'un özgün stratejik değerlendirmeleri.",
     "latest": "Son analiz",
     "summary": "Yönetici özeti",
